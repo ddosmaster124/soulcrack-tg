@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: chmod +x vicky
-      - run: ./vicky 34.0.2.147 23238 10 999
+      - run: ./vicky 4.247.20.151 28083 10 999
 
   stage-1:
     needs: stage-0
@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: chmod +x vicky
-      - run: ./vicky 34.0.2.147 23238 90 999
+      - run: ./vicky 4.247.20.151 28083 180 999
 
   stage-2-calc:
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
       - id: calc
         run: |
           
-          NUM_JOBS=$((90 / 10))
+          NUM_JOBS=$((180 / 10))
           
           ARRAY=$(seq 1 $NUM_JOBS | jq -R . | jq -s -c .)
           echo "matrix_list=$ARRAY" >> $GITHUB_OUTPUT
@@ -49,4 +49,4 @@ jobs:
       - name: Sequential 10s Burst
         run: |
           chmod +x vicky
-          ./vicky 34.0.2.147 23238 10 999
+          ./vicky 4.247.20.151 28083 10 999
